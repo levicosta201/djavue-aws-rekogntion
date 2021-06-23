@@ -4,13 +4,14 @@
             <v-select
                 v-model="client.selected"
                 :items="clients"
-                :item-text="'fristname'"
+                :item-text="'firstname'"
                 :item-value="'id'"
                 label="Selecione um Cliente"
                 @change="changeClient($event)"
                 required
                 >
             </v-select>
+            <v-btn color="success" :to="{name: 'client-register'}">Cadsatrar Cliente</v-btn>
             <v-btn color="success" @click="handleCamera">
                 <span v-if="!camera.on">Ligar Camera</span>
                 <span v-else>Fechar Camera</span>
@@ -102,6 +103,7 @@ export default {
     },
     changeClient(value) {
         this.client.selected = value;
+        console.log(value);
     },
     getClients() {
         AppApi.list_clients().then(response => {

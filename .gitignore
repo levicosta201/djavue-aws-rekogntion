@@ -6,3 +6,4 @@ coverage.xml
 htmlcov/
 .idea
 /passangers-rekognition.log
+/frontend/static/documents/
