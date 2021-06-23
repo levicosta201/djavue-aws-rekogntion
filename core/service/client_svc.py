@@ -12,6 +12,10 @@ def list_clients():
     clients = Client.objects.all()
     return [client.to_dict_json() for client in clients]
 
+def client_by_id(id):
+    client = Client.objects.get(id=id)
+    return client
+
 def save_document(document, firstname, lastname):
     document_path = './frontend/static/documents/'+ firstname.lower() +'_'+ lastname.lower() +'.jpeg'
     document_url = '/documents/'+ firstname.lower() +'_'+ lastname.lower() +'.jpeg' 
@@ -21,7 +25,7 @@ def save_document(document, firstname, lastname):
     destination.close()
     return document_url
     
-def compare_photos(client_photo):
+def compare_photos(client_photo, client_document):
     return {
-        'data': aws_svc.faces_comparation(client_photo, '')
+        'data': aws_svc.faces_comparation(client_photo, client_document)
     }

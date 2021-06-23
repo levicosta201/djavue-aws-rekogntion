@@ -70,8 +70,9 @@ def list_clients(request):
 
 @ajax_login_required
 def validate_client(request):
-    response = client_svc.compare_photos(request.FILES['client_photo'])
-    return JsonResponse(response);
+    client = client_svc.client_by_id(request.POST['client_id'])
+    response = client_svc.compare_photos(request.FILES['client_photo'], client.document)
+    return JsonResponse(response)
 
 
 def _user2dict(user):

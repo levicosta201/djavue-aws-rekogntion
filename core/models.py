@@ -39,7 +39,7 @@ class Client(models.Model):
     def to_dict_json(self):
         return {
             'id': self.id,
-            'fristname': self.firstname,
+            'firstname': self.firstname,
             'lastname': self.lastname,
             'email': self.email,
             'document': self.document
