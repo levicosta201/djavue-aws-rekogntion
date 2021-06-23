@@ -95,15 +95,21 @@ export default {
             self.client.photo = file;
             console.log(self.client);
             requestJS.validate_client(self.client).then(response => {
-                const accuracy = response.data;
+                const accuracy = parseFloat(response.data.data) || 0;
                 console.log(accuracy);
+                if (accuracy >= 80) {
+                    return alert('Cliente pertence ao documento informado no cadastro');
+                } else if(accuracy < 80 && accuracy >= 50) {
+                    return alert('Provavelmente este cliente não pertence ao documento informado');
+                } else {
+                    return alert('Cliente não pertence ao documento informado');
+                }
             });
         });
         
     },
     changeClient(value) {
         this.client.selected = value;
-        console.log(value);
     },
     getClients() {
         AppApi.list_clients().then(response => {
