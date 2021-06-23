@@ -5,6 +5,9 @@ Requirements:
 - Learn [Python](https://docs.python.org/3/tutorial/) and [Django](https://docs.djangoproject.com/en/2.0/intro/tutorial01/)
 - Learn [vue.js](vuejs.org)
 - Learn [Nuxt.js](https://nuxtjs.org/)
+- Learn [Boto3](https://pypi.org/project/boto3/)
+- Learn [AWS_Rekognition](https://aws.amazon.com/pt/rekognition/?blog-cards.sort-by=item.additionalFields.createdDate&blog-cards.sort-order=desc)
+- Learn [AWS_CLI](https://aws.amazon.com/pt/cli/)
 - Get familiar with [Vuetify.js](vuetifyjs.com/) components
 
 Step by step
@@ -23,6 +26,20 @@ With `dkup` running, open another terminal
 dk bash  # starts bash inside "passangers-rekognition" container
 ./manage.py migrate  # create database tables and stuff
 ./manage.py createsuperuser  # creates an application user in the database
+```
+
+Install `boto3` to AWS use with `dk bash`
+```bash
+python -m pip install boto3
+```
+
+Instal AWS CLI run with `dk bash`
+```bash
+dk bash
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+unzip awscli-bundle.zip
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+aws configure
 ```
 
 What is happenning:
