@@ -33,20 +33,7 @@ Create `documents` folder into your project
 mkdir frontend/static/documents
 ```
 
-Install `boto3` to AWS use with `dk bash`
-```bash
-python -m pip install boto3
-```
-
-Instal AWS CLI run with `dk bash`
-```bash
-dk bash
-curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-unzip awscli-bundle.zip
-sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
-```
-
-Configure AWS environment
+Configure AWS environment, exec with `dk bash`
 ```bash
 aws configure
 ```
