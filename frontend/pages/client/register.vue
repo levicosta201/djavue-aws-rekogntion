@@ -45,12 +45,8 @@
           <input type="file" @change="setDocument" name="photo" accept="image/*">
         </v-flex>
       </v-layout>
-      <v-btn
-      color="success"
-      @click="register"
-    >
-      Cadastrar Cliente
-    </v-btn>
+      <v-btn color="success" @click="register">Cadastrar Cliente</v-btn>
+    <v-btn color="success" :to="{name: 'client-validate'}">Validar Cliente</v-btn>
     </v-container>
   </v-form>
 </template>
