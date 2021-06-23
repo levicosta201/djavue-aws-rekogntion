@@ -3,7 +3,7 @@ RESTORE='\033[0m'
 RED='\033[00;31m'
 GREEN='\033[00;32m'
 YELLOW='\e[0;33m'
-HOST_PROD=djavue-aws-rekogntion.example.com
+HOST_PROD=passangers-rekognition.example.com
 
 # Because nobody wants to be memorizing commands all the time
 # Instructions:
@@ -12,7 +12,7 @@ HOST_PROD=djavue-aws-rekogntion.example.com
 # 3) Be happy
 
 
-workon djavue-aws-rekogntion  # Change this to your project's name
+workon passangers-rekognition  # Change this to your project's name
 
 export PROJ_BASE="$(dirname "${BASH_SOURCE[0]}")"
 CD=$(pwd)
@@ -86,7 +86,7 @@ function djangorun {
 function dkbuild {
     CD=$(pwd)
     cd $PROJ_BASE
-    docker build -t djavue-aws-rekogntion .
+    docker build -t passangers-rekognition .
     exitcode=$?
     cd $CD
     return $exitcode
@@ -95,7 +95,7 @@ function dkbuild {
 function dknpminstall {
     CD=$(pwd)
     cd $PROJ_BASE
-    docker run -it --rm -v $(pwd):/app -w /app/frontend -e NODE_ENV=development djavue-aws-rekogntion npm install
+    docker run -it --rm -v $(pwd):/app -w /app/frontend -e NODE_ENV=development passangers-rekognition npm install
     exitcode=$?
     cd $CD
     return $exitcode
@@ -136,17 +136,17 @@ function dkup {
 }
 
 function dkrun_prod {
-    docker stop djavue-aws-rekogntion
-    docker rm djavue-aws-rekogntion
-    docker run --name djavue-aws-rekogntion -d --env-file /home/ubuntu/djavue-aws-rekogntion.env \
+    docker stop passangers-rekognition
+    docker rm passangers-rekognition
+    docker run --name passangers-rekognition -d --env-file /home/ubuntu/passangers-rekognition.env \
         -p 3000:3000 -p 8000:8000 \
-        -v /home/ubuntu/dkdata/djavue-aws-rekogntion:/dkdata \
-        djavue-aws-rekogntion start_web.sh
+        -v /home/ubuntu/dkdata/passangers-rekognition:/dkdata \
+        passangers-rekognition start_web.sh
 }
 
 function deploy_prod {
   ssh ubuntu@$HOST_PROD "
-    cd ~/djavue-aws-rekogntion
+    cd ~/passangers-rekognition
     git reset --hard
     git pull
     source dev.sh
@@ -156,7 +156,7 @@ function deploy_prod {
 }
 
 function dk {
-    docker exec -it djavue-aws-rekogntion $@
+    docker exec -it passangers-rekognition $@
 }
 
 function runflake8 {
@@ -180,7 +180,7 @@ function echo_yellow {
     echo -e "${YELLOW}$1${RESTORE}";
 }
 
-echo_green "Welcome to djavue-aws-rekogntion's dev env"
+echo_green "Welcome to passangers-rekognition's dev env"
 echo_green "Hint: autocomplete works for the commands below ;)"
 echo_red   "------------------------------------------------------------------------"
 devhelp
