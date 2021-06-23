@@ -28,6 +28,11 @@ dk bash  # starts bash inside "passangers-rekognition" container
 ./manage.py createsuperuser  # creates an application user in the database
 ```
 
+Create `documents` folder into your project
+```bash
+mkdir frontend/static/documents
+```
+
 Install `boto3` to AWS use with `dk bash`
 ```bash
 python -m pip install boto3
