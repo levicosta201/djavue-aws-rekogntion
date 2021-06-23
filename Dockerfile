@@ -19,6 +19,11 @@ RUN cd /tmp && \
     rm node-v9.1.0-linux-x64.tar.xz && \
     npm install -g pm2
 
+RUN cd /tmp && \
+    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+    unzip awscli-bundle.zip
+    ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
 RUN mkdir /dkdata
 WORKDIR /app
 
@@ -30,6 +35,7 @@ COPY frontend/package.json frontend/package.json
 RUN cd frontend && npm install
 COPY frontend frontend
 RUN cd frontend && npm run build
+RUN python -m pip install boto3
 
 ENV SHELL=/bin/bash PYTHONUNBUFFERED=1 NODE_ENV=production API_MOCK=0 PYTHONIOENCODING=UTF-8 LANG=en_US.UTF-8 DJANGO_STATIC_ROOT=/dkdata/static DJANGO_LOG_FILE=/dkdata/passangers-rekognition.log UWSGI_PROCESSES=3 PORT=3000 HOST=0.0.0.0 API_BASE_URL=http://localhost:8000
 
