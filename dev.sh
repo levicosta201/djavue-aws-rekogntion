@@ -138,7 +138,7 @@ function dkup {
 function dkrun_prod {
     docker stop passangers-rekognition
     docker rm passangers-rekognition
-    docker run --name passangers-rekognition -d --env-file /home/ubuntu/passangers-rekognition.env \
+    docker run --name passangers-rekognition -d --env-file /home/ubuntu/djavue-aws-rekogntion/passangers-rekognition.env \
         -p 3000:3000 -p 8000:8000 \
         -v /home/ubuntu/dkdata/passangers-rekognition:/dkdata \
         passangers-rekognition start_web.sh
