@@ -1,6 +1,7 @@
 from core.models import Client
 from core.service import aws_svc
 import hashlib
+import time
 
 def add_client(firstname, lastname, email, document):
     document_path = save_document(document, firstname, lastname)
@@ -17,8 +18,10 @@ def client_by_id(id):
     return client
 
 def save_document(document, firstname, lastname):
-    document_path = './frontend/static/documents/'+ firstname.lower() +'_'+ lastname.lower() +'.jpeg'
-    document_url = '/documents/'+ firstname.lower() +'_'+ lastname.lower() +'.jpeg' 
+    string_to_hash = (firstname.lower() +'_'+ lastname.lower() + ':' + str(time.time())).encode()
+    document_path_name = hashlib.md5(string_to_hash).hexdigest()
+    document_path = './frontend/static/documents/'+ document_path_name +'.jpeg'
+    document_url = '/documents/'+ document_path_name +'.jpeg' 
     destination = open( document_path, 'wb' )
     for chunk in document.chunks():
             destination.write(chunk)
